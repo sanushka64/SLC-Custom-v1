@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sri Lanka Customs - Demo Dashboard Model | Developed by Creative Web Technologies</title>
+  <meta name="description" content="Browse 16 Sri Lanka Customs analytics dashboard previews, developed by Creative Web Technologies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       Sri Lanka Customs - Luxury Executive Portal
+       Faithful implementation matching demoHome.png reference exactly
+       ========================================================================== */
+    :root {
+      --primary-blue: #0091ff;
+      --navy-title: #0b224e;
+      --navy-muted: #64748b;
+      --navy-subtle: #94a3b8;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --radius-card: 13px;
+      --radius-pill: 9999px;
+      --transition-fast: 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 100vh Zero-Scroll Fit-to-Screen */
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100vh;
+      max-height: 100dvh;
+      overflow: hidden !important;
+      font-family: var(--font-main);
+      color: var(--navy-title);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: #edf5fd;
+      position: relative;
+    }
+
+    /* Subtle Fluid Silk Wave Backdrop matching demoHome.png */
+    .bg-waves-wrapper {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bg-waves-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* ==========================================================================
+       Faded Creative Software Logo Watermark positioned as in demoHome.png
+       ========================================================================== */
+    .bg-watermark {
+      position: absolute;
+      top: 96px;
+      left: 31.5%;
+      width: 840px;
+      max-width: 46vw;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.96;
+      user-select: none;
+    }
+
+    .watermark-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Main Container (100vh Strict Fit) */
+    .portal-container {
+      position: relative;
+      z-index: 1;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100vh;
+      max-height: 100dvh;
+      padding: 16px 42px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      box-sizing: border-box;
+    }
+
+    /* ==========================================================================
+       Top Header (Search Bar Removed for Clean Spacious Executive Elegance)
+       ========================================================================== */
+    .portal-header {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 0 4px;
+    }
+
+    /* Brand Left */
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .customs-crest-img {
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(11, 34, 78, 0.12));
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-name {
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--navy-title);
+    }
+
+    .brand-rule {
+      height: 1.5px;
+      background: var(--navy-title);
+      margin: 4px 0 4px;
+      width: 100%;
+      opacity: 0.95;
+    }
+
+    .brand-suite {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: #475569;
+    }
+
+    /* Header Right Actions */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .demo-model-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(224, 242, 254, 0.85);
+      border: 1px solid rgba(125, 211, 252, 0.85);
+      border-radius: var(--radius-pill);
+      padding: 7px 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #0284c7;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .pulse-cyan {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #0284c7;
+      box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.6);
+      animation: pulse-blue 1.8s infinite;
+    }
+
+    @keyframes pulse-blue {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.6); }
+      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(2, 132, 199, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+    }
+
+    .header-v-divider {
+      width: 1px;
+      height: 24px;
+      background: #cbd5e1;
+    }
+
+    .cwt-header-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      border-radius: var(--radius-pill);
+      padding: 5px 18px 5px 16px;
+      box-shadow: 0 3px 12px rgba(15, 43, 92, 0.05);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .cwt-header-card:hover {
+      box-shadow: 0 5px 18px rgba(0, 145, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .cwt-dev-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #334155;
+      white-space: nowrap;
+    }
+
+    .cwt-v-line {
+      width: 1px;
+      height: 18px;
+      background: #cbd5e1;
+    }
+
+    .cwt-logo-img {
+      height: 26px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ==========================================================================
+       Hero Section & Count Subbar
+       ========================================================================== */
+    .hero-section {
+      flex: 0 0 auto;
+      padding: 2px 4px 0;
+    }
+
+    .hero-title {
+      font-size: 2.35rem;
+      font-weight: 850;
+      color: var(--navy-title);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--navy-muted);
+      margin-bottom: 16px;
+    }
+
+    .dashboards-label {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy-title);
+      letter-spacing: -0.01em;
+    }
+
+    .count-val {
+      color: var(--primary-blue);
+      font-weight: 800;
+    }
+
+    /* ==========================================================================
+       Dashboard Grid (4 Columns x 4 Rows strictly fitting 100vh)
+       ========================================================================== */
+    .portal-grid {
+      flex: 1 1 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 12px 18px;
+      min-height: 0;
+      padding: 2px 2px 4px;
+    }
+
+    @media (max-width: 1200px) {
+      .portal-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+      }
+    }
+
+    /* Cards matching demoHome.png */
+    .dash-card {
+      position: relative;
+      background: #ffffff;
+      border-radius: var(--radius-card);
+      padding: 0 22px 0 24px;
+      box-shadow: 0 4px 16px rgba(15, 43, 92, 0.04), 0 0 0 1px rgba(226, 232, 240, 0.65);
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      user-select: none;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    /* Colored Left Vertical Stripe with Rounded Ends */
+    .dash-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: var(--stripe-color, var(--primary-blue));
+      border-top-left-radius: var(--radius-card);
+      border-bottom-left-radius: var(--radius-card);
+      transition: width var(--transition-fast);
+    }
+
+    .dash-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(15, 43, 92, 0.08), 0 0 0 1px rgba(203, 213, 225, 0.8);
+      background: #ffffff;
+    }
+
+    .dash-card:hover::before {
+      width: 6px;
+    }
+
+    /* Active / Featured Accounting Revenue Card */
+    .dash-card.card-active {
+      background: #ffffff;
+      border: 2px solid var(--primary-blue);
+      box-shadow: 0 6px 20px rgba(0, 145, 255, 0.16);
+    }
+
+    .dash-card.card-active::before {
+      background: var(--primary-blue);
+      width: 5px;
+    }
+
+    .dash-card.card-active:hover {
+      box-shadow: 0 8px 24px rgba(0, 145, 255, 0.22);
+    }
+
+    /* Inside Content */
+    .card-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .dash-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--navy-title);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
+    }
+
+    .dash-subtitle {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--navy-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+
+    /* Live Badge on Accounting Revenue */
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #d4f8e8;
+      color: #00aa55;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00c853;
+      box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.6);
+      animation: pulse-green 1.8s infinite;
+    }
+
+    @keyframes pulse-green {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.6); }
+      70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(0, 200, 83, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
+    }
+
+    /* ==========================================================================
+       Posh Minimal Executive Footer
+       ========================================================================== */
+    .portal-footer {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid rgba(147, 197, 253, 0.45);
+      font-size: 0.8rem;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-pill {
+      background: rgba(186, 230, 253, 0.65);
+      border: 1px solid rgba(125, 211, 252, 0.7);
+      border-radius: var(--radius-pill);
+      padding: 3px 12px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #0284c7;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .footer-dot {
+      color: #94a3b8;
+      font-weight: 700;
+    }
+
+    .footer-subtext {
+      color: var(--navy-muted);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-dev-text {
+      color: var(--navy-muted);
+      font-weight: 500;
+      font-size: 0.82rem;
+    }
+
+    .footer-cwt-name {
+      color: var(--navy-title);
+      font-weight: 800;
+      font-size: 0.84rem;
+    }
+  
+/* Homepage completion: searchable, navigable and usable across screen sizes. */
+.portal-header { flex-wrap: wrap; }
+.portal-search { flex: 1 1 230px; max-width: 410px; position: relative; margin: 0 10px; }
+.portal-search svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; fill: none; stroke: #6881b4; stroke-width: 2.2; pointer-events: none; }
+.portal-search input { width: 100%; height: 43px; border-radius: 999px; background: rgba(255,255,255,.85); box-shadow: 0 4px 15px rgba(20,63,121,.07); border: 1px solid #e3edf7; padding: 0 19px 0 45px; font: 600 .83rem var(--font-main); color: var(--navy-title); outline: none; }
+.portal-search input:focus { border-color: #58a9ee; box-shadow: 0 0 0 3px rgba(0,145,255,.12); }
+.portal-search input::placeholder { color: #7c90b5; }
+.portal-container { justify-content: flex-start; }
+.portal-grid { grid-template-rows: repeat(4,minmax(83px,1fr)); }
+.dash-card:focus-visible { outline: 3px solid #007bdc; outline-offset: 3px; }
+.dash-card[hidden] { display:none !important; }
+.card-top-row { width:100%; }
+.card-count { color:#7085a5; font-size:.69rem; font-weight:700; margin-top: 4px; }
+.card-chevron { position:absolute; right:16px; bottom:14px; color:#9cb4cf; opacity:0; font-size:1.1rem; transition:opacity .16s; }
+.dash-card:hover .card-chevron, .dash-card:focus-visible .card-chevron { opacity:1; }
+.ready-badge { display:inline-flex; padding:3px 9px; border-radius:50px; background:#e4f6ed; color:#118855; font-size:.68rem; font-weight:800; white-space:nowrap; }
+.portal-empty { display:none; grid-column: 1/-1; padding:50px 20px; text-align:center; background:rgba(255,255,255,.7); border-radius: 14px; color:#64748b; }
+.portal-empty:not([hidden]) { display:block; }
+.portal-footer { margin-top: 6px; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+@media(max-width:1450px) { .portal-container { overflow-y:auto; } html,body {height:auto;min-height:100%; max-height:none;overflow:auto !important;} .portal-grid {grid-template-rows:none; grid-auto-rows:minmax(100px,auto);} .hero-title {font-size:2.2rem;} .dash-card {min-height:98px;} }
+@media(max-width:1160px) { .portal-container {height:auto;min-height:100dvh; max-height:none; padding:20px 26px 22px;} .portal-grid { grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:none; } .portal-search {order:3;max-width:none;flex-basis:100%;margin:12px 0 0;} .portal-header{gap:10px;} .hero-section {padding-top:14px;} }
+@media(max-width:780px) { .portal-container{padding:18px 18px 22px;} .portal-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;} .hero-title {font-size:2rem;} .bg-watermark{left:20%;max-width:70vw;} .footer-right {display:none;} }
+@media(max-width:540px) { .portal-container {padding:14px 13px 22px;} .portal-grid {grid-template-columns:1fr; gap:10px;} .dash-card {min-height:92px;} .brand-name{font-size:.82rem;} .brand-suite{font-size:.56rem;letter-spacing:.13em;} .customs-crest-img{height:44px;} .demo-model-pill {display:none;} .header-v-divider{display:none;} .cwt-header-card {padding:5px 10px;} .cwt-dev-label {display:none;} .cwt-v-line{display:none;} .cwt-logo-img{height:23px;} .hero-title {font-size:1.7rem;} .hero-subtitle {line-height:1.6;font-size:.6rem;letter-spacing:.13em;} .footer-pill{font-size:.59rem;} .footer-subtext{font-size:.69rem;} }
+@media(prefers-reduced-motion:reduce) { *,*:before,*:after{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
+
+  </style>
+  <link rel="icon" type="image/png" href="assets/customs-logo.png">
+</head>
+<body>
+
+  <!-- Background Fluid Silk Waves -->
+  <div class="bg-waves-wrapper" aria-hidden="true">
+    <img src="assets/bg-waves.svg" alt="" class="bg-waves-img">
+  </div>
+
+  <!-- Faded Creative Software Logo Watermark positioned exactly as in demoHome.png -->
+  <div class="bg-watermark" aria-hidden="true">
+    <img src="assets/cwt-watermark.png" alt="" class="watermark-img">
+  </div>
+
+  <div class="portal-container">
+
+    <!-- Top Header (Search Bar Removed) -->
+    <header class="portal-header">
+      
+      <!-- Brand Left -->
+      <div class="brand-group">
+        <img src="assets/customs-crest-transparent.png" alt="Sri Lanka Customs Crest" class="customs-crest-img" onerror="this.src='customs_logo.png'">
+        <div class="brand-text">
+          <span class="brand-name">SRI LANKA CUSTOMS</span>
+          <div class="brand-rule"></div>
+          <span class="brand-suite">E X E C U T I V E &nbsp; S U I T E</span>
+        </div>
+      </div>
+
+<div class="portal-search" role="search">
+        <label for="dashboardSearch" class="sr-only">Search dashboards</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+        <input id="dashboardSearch" type="search" placeholder="Search dashboards…" autocomplete="off" aria-controls="portalGrid">
+      </div>
+      <!-- Right Actions: Demo Model Badge & CWT Credit -->
+      <div class="header-right">
+        <!-- Demo Dashboard Model Badge -->
+        <div class="demo-model-pill" title="Screenshot-based dashboard showcase">
+          <span class="pulse-cyan"></span>
+          <span>Demo Dashboard Model</span>
+        </div>
+
+        <div class="header-v-divider"></div>
+
+        <!-- Developed by CWT Card -->
+        <div class="cwt-header-card" title="Developed by Creative Web Technologies">
+          <span class="cwt-dev-label">Developed by</span>
+          <div class="cwt-v-line"></div>
+          <img src="assets/cwt-logo.png" alt="Creative Web Technology" class="cwt-logo-img" onerror="this.src='cwt-logo.png'">
+        </div>
+      </div>
+
+    </header>
+
+    <!-- Hero Title & Subbar -->
+    <div class="hero-section">
+      <h1 class="hero-title">Demo Dashboard Model</h1>
+      <div class="hero-subtitle">SRI LANKA CUSTOMS ANALYTICS ARCHITECTURE</div>
+      <div class="dashboards-label">
+        Dashboards <span class="count-val" id="countDisplay">(16)</span>
+      </div>
+    </div>
+
+    <!-- Posh Clean Grid Matching demoHome.png -->
+    <main class="portal-grid" id="portalGrid">
+<a href="revenue.html" class="dash-card card-active" style="--stripe-color: #0091ff;" data-title="Accounting Revenue" data-desc="Revenue collection &amp; accounting insights" aria-label="Open Accounting Revenue dashboard, 4 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Accounting Revenue</span></div>
+            <span class="dash-subtitle">Revenue collection &amp; accounting insights</span>
+            <span class="card-count">4 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=advanced-search" class="dash-card" style="--stripe-color: #0091ff;" data-title="Advanced Search" data-desc="Search and analyze customs data" aria-label="Open Advanced Search dashboard, 5 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Advanced Search</span></div>
+            <span class="dash-subtitle">Search and analyze customs data</span>
+            <span class="card-count">5 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=advanced-warehouse" class="dash-card" style="--stripe-color: #2563eb;" data-title="Advanced Warehouse" data-desc="Warehouse commodity history and insights" aria-label="Open Advanced Warehouse dashboard, 1 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Advanced Warehouse</span></div>
+            <span class="dash-subtitle">Warehouse commodity history and insights</span>
+            <span class="card-count">1 page</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=cusdec-analysis" class="dash-card" style="--stripe-color: #8b5cf6;" data-title="CusDec Analysis" data-desc="CusDec data analysis and trends" aria-label="Open CusDec Analysis dashboard, 2 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">CusDec Analysis</span></div>
+            <span class="dash-subtitle">CusDec data analysis and trends</span>
+            <span class="card-count">2 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=export" class="dash-card" style="--stripe-color: #10b981;" data-title="Export" data-desc="Export data and performance" aria-label="Open Export dashboard, 5 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Export</span></div>
+            <span class="dash-subtitle">Export data and performance</span>
+            <span class="card-count">5 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=import-analysis" class="dash-card" style="--stripe-color: #8b5cf6;" data-title="Import Analysis" data-desc="Import trends and analytics" aria-label="Open Import Analysis dashboard, 7 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Import Analysis</span></div>
+            <span class="dash-subtitle">Import trends and analytics</span>
+            <span class="card-count">7 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=import-container-movements" class="dash-card" style="--stripe-color: #f59e0b;" data-title="Import Container Movements" data-desc="FCL imports, container flow and yard monitoring" aria-label="Open Import Container Movements dashboard, 6 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Import Container Movements</span></div>
+            <span class="dash-subtitle">FCL imports, container flow and yard monitoring</span>
+            <span class="card-count">6 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=investigation-individuals" class="dash-card" style="--stripe-color: #ef4444;" data-title="Investigation &amp; Individuals" data-desc="Investigations and individual profiles" aria-label="Open Investigation &amp; Individuals dashboard, 4 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Investigation &amp; Individuals</span></div>
+            <span class="dash-subtitle">Investigations and individual profiles</span>
+            <span class="card-count">4 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=lcl" class="dash-card" style="--stripe-color: #0284c7;" data-title="LCL" data-desc="Less-than-container-load operations and movements" aria-label="Open LCL dashboard, 5 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">LCL</span></div>
+            <span class="dash-subtitle">Less-than-container-load operations and movements</span>
+            <span class="card-count">5 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=relief-revenue" class="dash-card" style="--stripe-color: #10b981;" data-title="Relief Revenue" data-desc="Relief revenue tracking" aria-label="Open Relief Revenue dashboard, 4 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Relief Revenue</span></div>
+            <span class="dash-subtitle">Relief revenue tracking</span>
+            <span class="card-count">4 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=remittance" class="dash-card" style="--stripe-color: #f59e0b;" data-title="Remittance" data-desc="Remittance analysis and reports" aria-label="Open Remittance dashboard, 5 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Remittance</span></div>
+            <span class="dash-subtitle">Remittance analysis and reports</span>
+            <span class="card-count">5 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=risk-management" class="dash-card" style="--stripe-color: #f97316;" data-title="Risk Management" data-desc="Risk analysis and monitoring" aria-label="Open Risk Management dashboard, 7 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Risk Management</span></div>
+            <span class="dash-subtitle">Risk analysis and monitoring</span>
+            <span class="card-count">7 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=valuation-analysis" class="dash-card" style="--stripe-color: #8b5cf6;" data-title="Valuation Analysis" data-desc="Valuation trends and insights" aria-label="Open Valuation Analysis dashboard, 6 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Valuation Analysis</span></div>
+            <span class="dash-subtitle">Valuation trends and insights</span>
+            <span class="card-count">6 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=valuation-database" class="dash-card" style="--stripe-color: #2563eb;" data-title="Valuation Database" data-desc="Valuation data and geographical analysis" aria-label="Open Valuation Database dashboard, 2 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Valuation Database</span></div>
+            <span class="dash-subtitle">Valuation data and geographical analysis</span>
+            <span class="card-count">2 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=vehicle" class="dash-card" style="--stripe-color: #06b6d4;" data-title="Vehicle" data-desc="Vehicle clearance and tracking" aria-label="Open Vehicle dashboard, 4 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Vehicle</span></div>
+            <span class="dash-subtitle">Vehicle clearance and tracking</span>
+            <span class="card-count">4 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+<a href="dashboard.html?id=warehousing" class="dash-card" style="--stripe-color: #00b7a5;" data-title="Warehousing" data-desc="Warehouse stock and summary analysis" aria-label="Open Warehousing dashboard, 2 pages">
+          <div class="card-inner"><div class="card-top-row"><span class="dash-title">Warehousing</span></div>
+            <span class="dash-subtitle">Warehouse stock and summary analysis</span>
+            <span class="card-count">2 pages</span>
+          </div><span class="card-chevron" aria-hidden="true">↗</span></a>
+    <div class="portal-empty" id="portalEmpty" hidden>No dashboards matched your search. Try a different term.</div>
+    </main>
+
+    <!-- Posh Minimal Executive Footer -->
+    <footer class="portal-footer">
+      <div class="footer-left">
+        <span class="footer-pill">DEMO DASHBOARD MODEL</span>
+        <span class="footer-dot">•</span>
+        <span class="footer-subtext">Sri Lanka Customs Analytics Architecture</span>
+      </div>
+      <div class="footer-right">
+        <span class="footer-dev-text">Developed by</span>
+        <span class="footer-cwt-name">Creative Web Technologies</span>
+      </div>
+    </footer>
+
+  </div>
+  <script src="home.js" defer></script>
+
+</body>
+</html>

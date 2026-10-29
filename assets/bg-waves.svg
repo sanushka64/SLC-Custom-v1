@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1860 845" preserveAspectRatio="none" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#edf5fd"/>
+      <stop offset="40%" stop-color="#e6f1fc"/>
+      <stop offset="100%" stop-color="#daf0fd"/>
+    </linearGradient>
+    <linearGradient id="wave1" x1="0.2" y1="0" x2="1" y2="0.8">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#dbeafe" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="wave2" x1="0" y1="0.2" x2="1" y2="0.9">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="60%" stop-color="#d8ebfc" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#c7e2fd" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="wave3" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#d0e6fd" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base Sky -->
+  <rect width="1860" height="845" fill="url(#sky)"/>
+
+  <!-- Left fluid silk curves matching demoHome.png -->
+  <path d="M0,100 C220,150 380,240 480,350 C380,480 200,600 0,660 Z" fill="url(#wave3)"/>
+  <path d="M0,560 C260,660 440,750 560,845 L0,845 Z" fill="url(#wave3)" opacity="0.75"/>
+
+  <!-- Top Right diagonal silk curves matching demoHome.png -->
+  <path d="M1100,0 C1350,140 1620,180 1860,170 L1860,0 Z" fill="url(#wave1)"/>
+  <path d="M880,0 C1200,240 1520,320 1860,350 L1860,170 C1620,180 1350,140 1100,0 Z" fill="url(#wave2)"/>
+  <path d="M1250,320 C1500,440 1700,560 1860,620 L1860,350 C1600,340 1420,330 1250,320 Z" fill="url(#wave1)" opacity="0.6"/>
+  <path d="M1180,520 C1440,660 1680,760 1860,820 L1860,620 C1700,560 1440,460 1180,520 Z" fill="url(#wave2)" opacity="0.45"/>
+</svg>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e8f3fc">
+  <meta name="description" content="Sri Lanka Customs analytics dashboards — screenshot-based client showcase by Creative Web Technologies.">
+  <title>Dashboard Showcase | Sri Lanka Customs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="viewer.css">
+  <script src="catalog.js" defer></script>
+  <script src="viewer.js" defer></script>
+  <link rel="icon" type="image/png" href="assets/customs-logo.png">
+</head>
+<body>
+  <div class="bg-wrapper" aria-hidden="true"><div class="harbor-backdrop"></div><div class="ambient-gradient"></div></div>
+  <div class="app-container" id="viewerApp">
+    <header class="top-header">
+      <div class="brand-section">
+        <a href="index.html" class="home-portal-btn" title="Back to all dashboards" aria-label="Home: all dashboards">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>Home
+        </a>
+        <div class="brand-emblem-wrap"><img src="assets/customs-logo.png" class="brand-emblem" alt="Sri Lanka Customs Crest"></div>
+        <div class="brand-text"><span class="brand-super">SRI LANKA CUSTOMS · DASHBOARD SHOWCASE</span><h1 class="brand-title" id="dashboardTitle">Dashboard</h1></div>
+      </div>
+      <div class="header-right">
+        <label class="dashboard-switch-wrap" for="dashboardSwitch"><span class="sr-only">Choose dashboard</span><select id="dashboardSwitch" title="Switch to another dashboard" aria-label="Switch dashboard"></select></label>
+        <button type="button" class="icon-btn" id="pagesBtn" aria-label="Browse page thumbnails" title="Browse pages (P)" aria-expanded="false" aria-controls="pagesPanel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="zoomBtn" aria-label="Enlarge dashboard image" title="Zoom screenshot (Z)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5M11 8v6M8 11h6"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="fullscreenBtn" aria-label="Enter fullscreen" title="Fullscreen (F)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
+        </button>
+        <div class="cwt-header-card" title="Developed by Creative Web Technologies"><img src="assets/cwt-logo.png" alt="Creative Web Technology" class="cwt-logo-img"></div>
+      </div>
+    </header>
+    <div class="nav-area" id="navArea">
+      <div class="section-bar" id="sectionBar" hidden><span class="section-caption">REPORT</span><nav id="sectionNav" class="section-tabs" aria-label="Report variants"></nav></div>
+      <div class="page-bar"><span class="page-caption">PAGES</span><nav class="nav-pills-container" id="navPillsContainer" aria-label="Dashboard pages"></nav></div>
+    </div>
+    <main class="dashboard-stage-wrapper" id="stageWrapper" aria-label="Dashboard screenshot preview">
+      <div class="dashboard-card" id="dashboardCard">
+        <div class="dashboard-viewport" id="dashboardViewport">
+          <img id="dashImageMain" class="dashboard-image-main" src="" alt="" draggable="false" tabindex="0" title="Click to enlarge screenshot">
+          <div class="image-loader" id="imageLoader" aria-live="polite">Loading preview…</div>
+          <button type="button" class="stage-nav-arrow arrow-prev" id="prevBtn" title="Previous page (←)" aria-label="Previous page"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button type="button" class="stage-nav-arrow arrow-next" id="nextBtn" title="Next page (→)" aria-label="Next page"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+      <div id="pagesPanel" class="pages-panel" hidden>
+        <div class="panel-heading"><div><h2>All pages</h2><p>Choose a screenshot to view</p></div><button class="panel-close" id="closePagesBtn" type="button" aria-label="Close page gallery">✕</button></div>
+        <div class="thumb-grid" id="thumbGrid"></div>
+      </div>
+    </main>
+    <footer class="viewer-footer">
+      <div class="viewer-footer-left"><span class="static-badge">SCREENSHOT PREVIEW</span><span class="foot-separator">·</span><span id="currentPageName" class="current-page-name">—</span><span class="page-number" id="pageNumber">—</span></div>
+      <div class="viewer-footer-right"><button type="button" class="footer-action" id="copyLinkBtn" title="Copy link to this page">Copy page link</button><span class="footer-help">← → navigate · Z zoom · F fullscreen</span></div>
+    </footer>
+  </div>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" hidden>
+    <div class="lightbox-header"><div class="lightbox-title" id="lightboxTitle">Dashboard image</div><div class="lightbox-tools"><button type="button" class="lightbox-button" id="zoomOutBtn" title="Zoom out">−</button><output id="zoomLevel" aria-live="polite">100%</output><button type="button" class="lightbox-button" id="zoomInBtn" title="Zoom in">+</button><button type="button" class="lightbox-button" id="zoomResetBtn" title="Reset zoom">Reset</button><button type="button" class="lightbox-button lightbox-close" id="closeLightboxBtn" title="Close (Esc)">✕</button></div></div>
+    <div class="lightbox-canvas" id="lightboxCanvas"><img id="lightboxImg" src="" alt="" draggable="false"></div>
+    <div class="lightbox-footnote">Use + / − to zoom, then scroll to inspect details. These are images, not live Power BI reports.</div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
